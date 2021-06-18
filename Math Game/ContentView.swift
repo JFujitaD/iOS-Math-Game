@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    private var games = Games().list
+    
     var body: some View {
         VStack {
             NavigationView {
@@ -17,25 +19,25 @@ struct ContentView: View {
                     Group{
                         Group{
                             Divider()
-                            NavigationLink(destination: Text("Test")) {
+                            NavigationLink(destination: GameView(game: games[0])) {
                                 Text("Addition")
                             }
                             Divider()
-                            NavigationLink(destination: Text("Test")) {
+                            NavigationLink(destination: GameView(game: games[1])) {
                                 Text("Subtraction")
                             }
                             Divider()
-                            NavigationLink(destination: Text("Test")) {
+                            NavigationLink(destination: GameView(game: games[2])) {
                                 Text("Multiplication")
                             }
                             Divider()
-                            NavigationLink(destination: Text("Test")) {
+                            NavigationLink(destination: GameView(game: games[3])) {
                                 Text("Division")
                             }
                         }
                         Group{
                             Divider()
-                            NavigationLink(destination: Text("Test")) {
+                            NavigationLink(destination: HighScoreView()) {
                                 Text("High Scores").foregroundColor(.green)
                             }
                             Divider()

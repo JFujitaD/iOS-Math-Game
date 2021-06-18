@@ -14,6 +14,6 @@ struct Game {
 enum GameType: String{
     case ADD = "+"
     case SUB = "-"
-    case MUL = "*"
+    case MUL = "X"
     case DIV = "/"
 }

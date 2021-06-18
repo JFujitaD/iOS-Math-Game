@@ -9,9 +9,12 @@ import SwiftUI
 
 struct GameView: View {
     let game: Game
+    
+    @State var answer: Int = 0
     @State var answerField = "0"
-    @State var num1 = "a"
-    @State var num2 = "b"
+    @State var num1 = "_"
+    @State var num2 = "_"
+    @State var buttonDisabled = false
     
     var body: some View {
         VStack {
@@ -42,13 +45,23 @@ struct GameView: View {
             }
             .padding(.horizontal)
             Spacer()
-            Button(action: {}, label: {
+            Button(action: {
+                buttonDisabled = true
+                (num1, num2, answer) = chooseRandomNumbers()
+            }, label: {
                 Text("Start Game")
-            })
+            }).disabled(buttonDisabled)
             Divider()
             Spacer()
         }
     }
+}
+
+func chooseRandomNumbers() -> (r1: String, r2: String, ans: Int){
+    let rand1 = Int.random(in: 1...9)
+    let rand2 = Int.random(in: 1...9)
+    
+    return (String(rand1), String(rand2), rand1 + rand2)
 }
 
 struct GameView_Previews: PreviewProvider {

@@ -8,8 +8,18 @@
 import SwiftUI
 
 struct HighScoreView: View {
+    let highScores = HighScores().list
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            Text("High Scores").font(.largeTitle)
+            List {
+                ForEach(highScores, content: {
+                    hs in
+                    Text("\(hs.winnerName) - \(hs.score)pts.")
+                })
+            }.font(.title)
+        }
     }
 }
 

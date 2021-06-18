@@ -15,6 +15,8 @@
 		F80B3F03267D4B5E00F8DCA9 /* HighScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80B3F02267D4B5E00F8DCA9 /* HighScoreView.swift */; };
 		F80B3F06267D4C9A00F8DCA9 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80B3F05267D4C9A00F8DCA9 /* Game.swift */; };
 		F80B3F0A267D4D8E00F8DCA9 /* Games.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80B3F09267D4D8E00F8DCA9 /* Games.swift */; };
+		F80B3F0E267D580900F8DCA9 /* HighScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80B3F0D267D580900F8DCA9 /* HighScore.swift */; };
+		F80B3F11267D583100F8DCA9 /* HighScores.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80B3F10267D583100F8DCA9 /* HighScores.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		F80B3F02267D4B5E00F8DCA9 /* HighScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScoreView.swift; sourceTree = "<group>"; };
 		F80B3F05267D4C9A00F8DCA9 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		F80B3F09267D4D8E00F8DCA9 /* Games.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Games.swift; sourceTree = "<group>"; };
+		F80B3F0D267D580900F8DCA9 /* HighScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScore.swift; sourceTree = "<group>"; };
+		F80B3F10267D583100F8DCA9 /* HighScores.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScores.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				F80B3F05267D4C9A00F8DCA9 /* Game.swift */,
+				F80B3F0D267D580900F8DCA9 /* HighScore.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -101,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				F80B3F09267D4D8E00F8DCA9 /* Games.swift */,
+				F80B3F10267D583100F8DCA9 /* HighScores.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -175,6 +181,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F80B3EEE267D459200F8DCA9 /* ContentView.swift in Sources */,
+				F80B3F0E267D580900F8DCA9 /* HighScore.swift in Sources */,
+				F80B3F11267D583100F8DCA9 /* HighScores.swift in Sources */,
 				F80B3F06267D4C9A00F8DCA9 /* Game.swift in Sources */,
 				F80B3F03267D4B5E00F8DCA9 /* HighScoreView.swift in Sources */,
 				F80B3F0A267D4D8E00F8DCA9 /* Games.swift in Sources */,

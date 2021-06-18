@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HighScoreView: View {
-    let highScores = HighScores().list
+    @Binding var highScores: [HighScore]
     
     var body: some View {
         VStack{
@@ -24,7 +24,8 @@ struct HighScoreView: View {
 }
 
 struct HighScoreView_Previews: PreviewProvider {
+    @State static var highScores = HighScores().list
     static var previews: some View {
-        HighScoreView()
+        HighScoreView(highScores: $highScores)
     }
 }

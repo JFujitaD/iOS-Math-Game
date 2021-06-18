@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     private var games = Games().list
+    @State var highScores = HighScores().list
     
     var body: some View {
         VStack {
@@ -37,7 +38,7 @@ struct ContentView: View {
                         }
                         Group{
                             Divider()
-                            NavigationLink(destination: HighScoreView()) {
+                            NavigationLink(destination: HighScoreView(highScores: $highScores)) {
                                 Text("High Scores").foregroundColor(.green)
                             }
                             Divider()

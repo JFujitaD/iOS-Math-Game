@@ -47,7 +47,11 @@ struct GameView: View {
             Spacer()
             Button(action: {
                 buttonDisabled = true
-                (num1, num2, answer) = chooseRandomNumbers()
+                let (int1, int2) = game.getRandomNumbers()
+                num1 = String(int1)
+                num2 = String(int2)
+                answer = game.computeAnswer(n1: int1, n2: int2)
+                print(answer)
             }, label: {
                 Text("Start Game")
             }).disabled(buttonDisabled)
@@ -57,15 +61,8 @@ struct GameView: View {
     }
 }
 
-func chooseRandomNumbers() -> (r1: String, r2: String, ans: Int){
-    let rand1 = Int.random(in: 1...9)
-    let rand2 = Int.random(in: 1...9)
-    
-    return (String(rand1), String(rand2), rand1 + rand2)
-}
-
 struct GameView_Previews: PreviewProvider {
-    static let game: Game = Game(name: "Addition", type: .ADD)
+    static let game: Game = Game(name: "Division", type: .DIV)
     
     static var previews: some View {
         GameView(game: game)

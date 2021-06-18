@@ -52,6 +52,8 @@
 		F80B3EEA267D459200F8DCA9 /* Math Game */ = {
 			isa = PBXGroup;
 			children = (
+				F80B3EFD267D460F00F8DCA9 /* Views */,
+				F80B3EFB267D45D500F8DCA9 /* Models */,
 				F80B3EEB267D459200F8DCA9 /* Math_GameApp.swift */,
 				F80B3EED267D459200F8DCA9 /* ContentView.swift */,
 				F80B3EEF267D459400F8DCA9 /* Assets.xcassets */,
@@ -67,6 +69,20 @@
 				F80B3EF2267D459400F8DCA9 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		F80B3EFB267D45D500F8DCA9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F80B3EFD267D460F00F8DCA9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

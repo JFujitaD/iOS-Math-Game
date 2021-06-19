@@ -8,9 +8,8 @@
 import SwiftUI
 
 struct GameView: View {
-    let game: Game
-    @Binding var games: [Game]
-    @Binding var highScores: [HighScore]
+    @ObservedObject var dataManager: DataManager
+    let gameIndex: Int
     
     @State var score: Int = 0
     @State var answer: Int = 0
@@ -21,7 +20,7 @@ struct GameView: View {
     
     var body: some View {
         VStack {
-            Text(game.name).font(.largeTitle)
+            Text(dataManager.games[gameIndex].name).font(.largeTitle)
             Spacer()
             Divider()
             Text("Score: \(score)").font(.title)
@@ -30,23 +29,23 @@ struct GameView: View {
                     Spacer()
                     Text(num1)
                     Spacer()
-                    Text(game.type.rawValue)
+                    Text(dataManager.games[gameIndex].type.rawValue)
                     Spacer()
                     Text(num2)
                     Spacer()
                     Text("=")
                     Spacer()
                 }.font(.title)
-                AnswerView(game: game, highScores: $highScores, num1: $num1, num2: $num2, answerField: $answerField, answer: $answer, score: $score)
+                AnswerView(dataManager: dataManager, gameIndex: gameIndex, num1: $num1, num2: $num2, answerField: $answerField, answer: $answer, score: $score)
             }
             .padding(.horizontal)
             Spacer()
             Button(action: {
                 buttonDisabled = true
-                let (int1, int2) = game.getRandomNumbers()
+                let (int1, int2) = dataManager.games[gameIndex].getRandomNumbers()
                 num1 = String(int1)
                 num2 = String(int2)
-                answer = game.computeAnswer(n1: int1, n2: int2)
+                answer = dataManager.games[gameIndex].computeAnswer(n1: int1, n2: int2)
             }, label: {
                 Text("Start Game")
             }).disabled(buttonDisabled)
@@ -57,11 +56,11 @@ struct GameView: View {
 }
 
 struct AnswerView: View {
-    let game: Game
+    @ObservedObject var dataManager: DataManager
+    let gameIndex: Int
     @State var questionsLeft = 10
     @State var isGameOver = false
     
-    @Binding var highScores: [HighScore]
     @Binding var num1: String
     @Binding var num2: String
     @Binding var answerField: String
@@ -82,7 +81,7 @@ struct AnswerView: View {
                         
                         if questionsLeft == 0 {
                             isGameOver = true
-                            highScores.append(HighScore(winnerName: "Julian", score: score))
+                            dataManager.scores.append(HighScore(winnerName: "Julian", score: score))
                             num1 = "_"
                             num2 = "_"
                             answer = 0
@@ -91,10 +90,10 @@ struct AnswerView: View {
                             score -= 1
                         }
                         else {
-                            let (int1, int2) = game.getRandomNumbers()
+                            let (int1, int2) = dataManager.games[gameIndex].getRandomNumbers()
                             num1 = String(int1)
                             num2 = String(int2)
-                            answer = game.computeAnswer(n1: int1, n2: int2)
+                            answer = dataManager.games[gameIndex].computeAnswer(n1: int1, n2: int2)
                             answerField = ""
                         }
                     }
@@ -110,10 +109,9 @@ struct AnswerView: View {
 
 struct GameView_Previews: PreviewProvider {
     static let game = Game(name: "Division", type: .DIV)
-    @State static var games = Games().list
-    @State static var highScores = HighScores().list
+    static var dataManager = DataManager()
     
     static var previews: some View {
-        GameView(game: game, games: $games, highScores: $highScores)
+        GameView(dataManager: dataManager, gameIndex: 3)
     }
 }

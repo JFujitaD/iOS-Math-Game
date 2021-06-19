@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct HighScoreView: View {
-    @Binding var highScores: [HighScore]
+    @ObservedObject var dataManager: DataManager
     
     var body: some View {
         VStack{
             Text("High Scores").font(.largeTitle)
             List {
-                ForEach(highScores, content: {
+                ForEach(dataManager.scores, content: {
                     hs in
                     Text("\(hs.winnerName) - \(hs.score)pts.")
                 })
@@ -24,8 +24,8 @@ struct HighScoreView: View {
 }
 
 struct HighScoreView_Previews: PreviewProvider {
-    @State static var highScores = HighScores().list
+    static var dataManager = DataManager()
     static var previews: some View {
-        HighScoreView(highScores: $highScores)
+        HighScoreView(dataManager: dataManager)
     }
 }

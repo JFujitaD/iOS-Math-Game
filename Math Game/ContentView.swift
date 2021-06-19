@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var games = Games().list
-    @State var highScores = HighScores().list
+    @EnvironmentObject var dataManager: DataManager
     
     var body: some View {
         VStack {
@@ -20,25 +19,33 @@ struct ContentView: View {
                     Group{
                         Group{
                             Divider()
-                            NavigationLink(destination: GameView(game: games[0], games: $games, highScores: $highScores)) {
-                                Text("Addition")
-                            }
+                            NavigationLink(
+                                destination: GameView(dataManager: dataManager, gameIndex: 0),
+                                label: {
+                                    Text("Addition")
+                                })
                             Divider()
-                            NavigationLink(destination: GameView(game: games[1], games: $games, highScores: $highScores)) {
-                                Text("Subtraction")
-                            }
+                            NavigationLink(
+                                destination: GameView(dataManager: dataManager, gameIndex: 1),
+                                label: {
+                                    Text("Subtraction")
+                                })
                             Divider()
-                            NavigationLink(destination: GameView(game: games[2], games: $games, highScores: $highScores)) {
-                                Text("Multiplication")
-                            }
+                            NavigationLink(
+                                destination: GameView(dataManager: dataManager, gameIndex: 2),
+                                label: {
+                                    Text("Multiplication")
+                                })
                             Divider()
-                            NavigationLink(destination: GameView(game: games[3], games: $games, highScores: $highScores)) {
-                                Text("Division")
-                            }
+                            NavigationLink(
+                                destination: GameView(dataManager: dataManager, gameIndex: 3),
+                                label: {
+                                    Text("Division")
+                                })
                         }
                         Group{
                             Divider()
-                            NavigationLink(destination: HighScoreView(highScores: $highScores)) {
+                            NavigationLink(destination: HighScoreView(dataManager: dataManager)) {
                                 Text("High Scores").foregroundColor(.green)
                             }
                             Divider()

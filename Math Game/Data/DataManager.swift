@@ -14,7 +14,7 @@ class DataManager: ObservableObject {
         Game(name: "Multiplication", type: .MUL),
         Game(name: "Division", type: .DIV)
     ]
-    @Published var list: [HighScore] = [
+    @Published var scores: [HighScore] = [
         HighScore(winnerName: "Jerome", score: 225),
         HighScore(winnerName: "Lester", score: 360),
         HighScore(winnerName: "Jen", score: 236),

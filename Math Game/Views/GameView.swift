@@ -79,6 +79,7 @@ struct AnswerView: View {
                         answerField = ""
                     }
                 })
+                .background(Color(.sRGB, red: 0, green: 1, blue: 1, opacity: 0.25))
             Spacer()
         }
     }

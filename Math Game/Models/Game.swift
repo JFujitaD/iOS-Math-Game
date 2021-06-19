@@ -28,11 +28,11 @@ struct Game {
         
         switch type {
         case .ADD:
-            r1 = Int.random(in: 1...99)
-            r2 = Int.random(in: 1...99)
-        case .SUB:
             r1 = Int.random(in: 1...30)
             r2 = Int.random(in: 1...30)
+        case .SUB:
+            r1 = Int.random(in: 1...20)
+            r2 = Int.random(in: 1...20)
             
             if r1 < r2 {
                 let r1Temp = r1
@@ -40,8 +40,8 @@ struct Game {
                 r2 = r1Temp
             }
         case .MUL:
-            r1 = Int.random(in: 1...12)
-            r2 = Int.random(in: 1...12)
+            r1 = Int.random(in: 2...12)
+            r2 = Int.random(in: 2...12)
         case .DIV:
             r1 = Int.random(in: 1...50)
             r2 = Int.random(in: 1...50)

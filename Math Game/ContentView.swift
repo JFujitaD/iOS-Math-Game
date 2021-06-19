@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    private var games = Games().list
+    @State private var games = Games().list
     @State var highScores = HighScores().list
     
     var body: some View {
@@ -20,19 +20,19 @@ struct ContentView: View {
                     Group{
                         Group{
                             Divider()
-                            NavigationLink(destination: GameView(game: games[0])) {
+                            NavigationLink(destination: GameView(game: games[0], games: $games, highScores: $highScores)) {
                                 Text("Addition")
                             }
                             Divider()
-                            NavigationLink(destination: GameView(game: games[1])) {
+                            NavigationLink(destination: GameView(game: games[1], games: $games, highScores: $highScores)) {
                                 Text("Subtraction")
                             }
                             Divider()
-                            NavigationLink(destination: GameView(game: games[2])) {
+                            NavigationLink(destination: GameView(game: games[2], games: $games, highScores: $highScores)) {
                                 Text("Multiplication")
                             }
                             Divider()
-                            NavigationLink(destination: GameView(game: games[3])) {
+                            NavigationLink(destination: GameView(game: games[3], games: $games, highScores: $highScores)) {
                                 Text("Division")
                             }
                         }

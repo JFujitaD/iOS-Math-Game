@@ -9,6 +9,8 @@ import SwiftUI
 
 struct GameView: View {
     let game: Game
+    @Binding var games: [Game]
+    @Binding var highScores: [HighScore]
     
     @State var score: Int = 0
     @State var answer: Int = 0
@@ -35,7 +37,7 @@ struct GameView: View {
                     Text("=")
                     Spacer()
                 }.font(.title)
-                AnswerView(game: game, num1: $num1, num2: $num2, answerField: $answerField, answer: $answer, score: $score)
+                AnswerView(game: game, highScores: $highScores, num1: $num1, num2: $num2, answerField: $answerField, answer: $answer, score: $score)
             }
             .padding(.horizontal)
             Spacer()
@@ -59,6 +61,7 @@ struct AnswerView: View {
     @State var questionsLeft = 10
     @State var isGameOver = false
     
+    @Binding var highScores: [HighScore]
     @Binding var num1: String
     @Binding var num2: String
     @Binding var answerField: String
@@ -77,11 +80,15 @@ struct AnswerView: View {
                         score += 1
                         questionsLeft -= 1
                         
-                        if questionsLeft <= 0 {
+                        if questionsLeft == 0 {
                             isGameOver = true
+                            highScores.append(HighScore(winnerName: "Julian", score: score))
                             num1 = "_"
                             num2 = "_"
                             answer = 0
+                        }
+                        else if questionsLeft < 0 {
+                            score -= 1
                         }
                         else {
                             let (int1, int2) = game.getRandomNumbers()
@@ -90,7 +97,6 @@ struct AnswerView: View {
                             answer = game.computeAnswer(n1: int1, n2: int2)
                             answerField = ""
                         }
-                        
                     }
                 })
                 .background(Color(.sRGB, red: 0, green: 1, blue: 1, opacity: 0.25))
@@ -103,9 +109,11 @@ struct AnswerView: View {
 }
 
 struct GameView_Previews: PreviewProvider {
-    static let game: Game = Game(name: "Division", type: .DIV)
+    static let game = Game(name: "Division", type: .DIV)
+    @State static var games = Games().list
+    @State static var highScores = HighScores().list
     
     static var previews: some View {
-        GameView(game: game)
+        GameView(game: game, games: $games, highScores: $highScores)
     }
 }

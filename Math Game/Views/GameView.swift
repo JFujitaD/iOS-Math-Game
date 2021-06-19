@@ -75,21 +75,25 @@ struct AnswerView: View {
                 .multilineTextAlignment(/*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 .font(.title)
                 .onChange(of: answerField, perform: { value in
+                    // If the answer is corect
                     if Int(answerField) == answer {
-                        score += 1
                         questionsLeft -= 1
-                        
+                        // If there are no questions left
                         if questionsLeft == 0 {
+                            score += 1
                             isGameOver = true
                             dataManager.scores.append(HighScore(winnerName: "Julian", score: score))
                             num1 = "_"
                             num2 = "_"
                             answer = 0
                         }
+                        // If the game is already over
                         else if questionsLeft < 0 {
-                            score -= 1
+                            
                         }
+                        // Regular correct answer
                         else {
+                            score += 1
                             let (int1, int2) = dataManager.games[gameIndex].getRandomNumbers()
                             num1 = String(int1)
                             num2 = String(int2)

@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct Math_GameApp: App {
+    @EnvironmentObject var dataManager: DataManager
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().environmentObject(dataManager)
         }
     }
 }

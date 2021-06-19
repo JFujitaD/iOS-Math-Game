@@ -56,6 +56,9 @@ struct GameView: View {
 
 struct AnswerView: View {
     let game: Game
+    @State var questionsLeft = 10
+    @State var isGameOver = false
+    
     @Binding var num1: String
     @Binding var num2: String
     @Binding var answerField: String
@@ -72,14 +75,25 @@ struct AnswerView: View {
                 .onChange(of: answerField, perform: { value in
                     if Int(answerField) == answer {
                         score += 1
-                        let (int1, int2) = game.getRandomNumbers()
-                        num1 = String(int1)
-                        num2 = String(int2)
-                        answer = game.computeAnswer(n1: int1, n2: int2)
-                        answerField = ""
+                        questionsLeft -= 1
+                        
+                        if questionsLeft == 0 {
+                            isGameOver = true
+                        }
+                        else {
+                            let (int1, int2) = game.getRandomNumbers()
+                            num1 = String(int1)
+                            num2 = String(int2)
+                            answer = game.computeAnswer(n1: int1, n2: int2)
+                            answerField = ""
+                        }
+                        
                     }
                 })
                 .background(Color(.sRGB, red: 0, green: 1, blue: 1, opacity: 0.25))
+                .alert(isPresented: $isGameOver, content: {
+                    Alert(title: Text("Game Over!"), message: Text("Score: \(score)"), dismissButton: .cancel())
+                })
             Spacer()
         }
     }

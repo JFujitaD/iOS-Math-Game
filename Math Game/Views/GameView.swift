@@ -77,8 +77,11 @@ struct AnswerView: View {
                         score += 1
                         questionsLeft -= 1
                         
-                        if questionsLeft == 0 {
+                        if questionsLeft <= 0 {
                             isGameOver = true
+                            num1 = "_"
+                            num2 = "_"
+                            answer = 0
                         }
                         else {
                             let (int1, int2) = game.getRandomNumbers()
